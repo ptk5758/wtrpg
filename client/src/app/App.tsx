@@ -1,8 +1,11 @@
 import React from "react"
-import tes from "./common/test"
+import { Canvas } from "../shared"
 function App() : React.JSX.Element {
     return (
-        <div onClick={()=>{tes()}}>W-TRPG</div>
+        <div>
+            <h1>W - TRPG</h1>
+            <Canvas/>
+        </div>
     )
 }
 export default App
