@@ -4,7 +4,6 @@ export default class CanvasManager {
     private context : CanvasRenderingContext2D;
     private isDrag : boolean;
     private mousePosition : {x : number, y : number}
-    private set = new Set<{x:number, y:number}>()
     constructor (element : HTMLCanvasElement) {
         this.canvas = element
         const t = this.canvas.getContext("2d")
@@ -28,21 +27,15 @@ export default class CanvasManager {
     onMouseMove = (e : MouseEvent) => {
         if (!this.isDrag) return
         const now = {x : e.offsetX, y : e.offsetY}
-        this.set.add(now)
         this.draw(now.x, now.y)
         this.mousePosition.x = now.x
         this.mousePosition.y = now.y
     }
     onMouseUp = (e : MouseEvent) => {
         this.isDrag = false
-        this.set.forEach((item) => {
-            console.log(item)
-        })
-        this.set.clear()
     }
     onMouseLeave = (e : MouseEvent) => {
         this.isDrag = false
-        this.set.clear()
     }
     draw(x : number, y : number)
     {
