@@ -1,11 +1,17 @@
 import React from "react"
 import useSocket, { Canvas } from "../shared"
 import { io } from 'socket.io-client'
+import { CreateRoomButton } from "../featured/room"
+import { Board } from "../widgets"
+import { SocketManagerProvider } from "./providers/SocketManagerProvider"
 function App() : React.JSX.Element {
-    const a = useSocket()
     return (
-        <div>
-        </div>
+        <SocketManagerProvider url="ws://localhost:5000">
+            <div>
+                <Board/>
+            </div>
+        </SocketManagerProvider>
+        
     )
 }
 export default App
