@@ -7,9 +7,15 @@ const SERVER_OPTION : Partial<ServerOptions> = {
 }
 export default class SocketManager
 {    
-    io : Server
+    static instance : SocketManager | null
+    static get() {
+        if (this.instance == null) throw new Error("Socket Manager Instance of null")
+        return this.instance
+    }
+    public io : Server
     constructor(server : http.Server) {
-        this.io = new Server(server, SERVER_OPTION)        
+        this.io = new Server(server, SERVER_OPTION)
+        SocketManager.instance = this
         this.initialize()
     }
     initialize() {
